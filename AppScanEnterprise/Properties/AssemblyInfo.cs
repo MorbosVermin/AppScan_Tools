@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AppScanEnterprise")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A library for working with AppScan Enterprise")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("WaitWha.com")]
 [assembly: AssemblyProduct("AppScanEnterprise")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
