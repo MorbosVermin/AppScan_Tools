@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Com.WaitWha.AppScanEnterprise.REST
 {
@@ -21,6 +22,8 @@ namespace Com.WaitWha.AppScanEnterprise.REST
         HttpClient Client { get; set; }
         string Username { get; set; }
         SecureString Password { get; set; }
+
+        string aseRootPath;
 
         /// <summary>
         /// Constructor
@@ -36,6 +39,8 @@ namespace Com.WaitWha.AppScanEnterprise.REST
             {
                 BaseAddress = baseAddress
             };
+
+            aseRootPath = baseAddress.AbsolutePath + "/";
 
             Client.DefaultRequestHeaders.Accept.Clear();
             Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -53,6 +58,7 @@ namespace Com.WaitWha.AppScanEnterprise.REST
         /// <returns></returns>
         async Task<HttpResponseMessage> Get(string requestUri, NameValuePairs nameValuePairs = null)
         {
+            requestUri = aseRootPath + requestUri;
             if (nameValuePairs != null)
             {
                 requestUri += nameValuePairs.ToQueryString(true);
@@ -74,6 +80,7 @@ namespace Com.WaitWha.AppScanEnterprise.REST
         /// <returns>Response from the server if the status code is 200</returns>
         async Task<HttpResponseMessage> Post(string requestUri, string json)
         {
+            requestUri = aseRootPath + requestUri;
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
             Uri uri = new Uri(Client.BaseAddress, requestUri);
             Log.Debug(String.Format("Sending HTTP POST request to {0}: {1} bytes (application/json)",
@@ -93,6 +100,7 @@ namespace Com.WaitWha.AppScanEnterprise.REST
         /// <returns>Response from the server if the status code is 200</returns>
         async Task<HttpResponseMessage> Delete(string requestUri)
         {
+            requestUri = aseRootPath + requestUri;
             Uri uri = new Uri(Client.BaseAddress, requestUri);
             Log.Debug(String.Format("Sending HTTP DELETE request to {0}.", uri));
             HttpResponseMessage response = await Client.DeleteAsync(uri);
@@ -123,6 +131,7 @@ namespace Com.WaitWha.AppScanEnterprise.REST
         /// <returns>Response from the server if the status code is 200</returns>
         async Task<HttpResponseMessage> Put(string requestUri, StringContent content)
         {
+            requestUri = aseRootPath + requestUri;
             Uri uri = new Uri(Client.BaseAddress, requestUri);
             Log.Debug(String.Format("Sending HTTP PUT request to {0}", uri));
             HttpResponseMessage response = await Client.PutAsync(requestUri, content);
@@ -136,6 +145,7 @@ namespace Com.WaitWha.AppScanEnterprise.REST
         Dictionary<string, dynamic> GenericJsonParse(HttpResponseMessage response)
         {
             string json = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Log.Debug(String.Format("Parsing JSON content ({0}bytes) to generic dictonary.", Encoding.UTF8.GetByteCount(json)));
             return JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(json);
         }
 
@@ -188,22 +198,24 @@ namespace Com.WaitWha.AppScanEnterprise.REST
 
             HttpResponseMessage response = await Get("applications", nv);
             string json = await response.Content.ReadAsStringAsync();
+            Log.Debug(String.Format("Received JSON: {0}", json));
 
             Logout();
             return JsonConvert.DeserializeObject<List<Application>>(json);
         }
 
-        public async Task<List<Scan>> GetScans(Application application)
+        public async Task<List<ScanFinding>> GetScans(Application application)
         {
             Login();
             NameValuePairs nv = new NameValuePairs();
             nv.Add("query", WebUtility.UrlEncode(String.Format("Application Name={0}", application.name)));
 
-            HttpResponseMessage response = await Get("scans", nv);
+            HttpResponseMessage response = await Get("issues", nv);
             string json = await response.Content.ReadAsStringAsync();
+            Log.Debug(String.Format("Received JSON: {0}", json));
 
             Logout();
-            return JsonConvert.DeserializeObject<List<Scan>>(json);
+            return JsonConvert.DeserializeObject<List<ScanFinding>>(json);
         }
 
     }

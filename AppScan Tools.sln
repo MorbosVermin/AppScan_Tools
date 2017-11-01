@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppScanEnterprise", "AppScanEnterprise\AppScanEnterprise.csproj", "{5658F418-B642-477F-88DF-35D5B112D249}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportParseTest", "ReportParseTest\ReportParseTest.csproj", "{DA4987E5-929D-4B5B-B589-273CB85581E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AseCLI", "AseCLI\AseCLI.csproj", "{9A14812A-E6DA-484F-AFD6-D58E963C45D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{5658F418-B642-477F-88DF-35D5B112D249}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5658F418-B642-477F-88DF-35D5B112D249}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5658F418-B642-477F-88DF-35D5B112D249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA4987E5-929D-4B5B-B589-273CB85581E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA4987E5-929D-4B5B-B589-273CB85581E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA4987E5-929D-4B5B-B589-273CB85581E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA4987E5-929D-4B5B-B589-273CB85581E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A14812A-E6DA-484F-AFD6-D58E963C45D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A14812A-E6DA-484F-AFD6-D58E963C45D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A14812A-E6DA-484F-AFD6-D58E963C45D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A14812A-E6DA-484F-AFD6-D58E963C45D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

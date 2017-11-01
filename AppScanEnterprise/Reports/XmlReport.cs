@@ -62,6 +62,24 @@ namespace Com.WaitWha.AppScanEnterprise.Reports
         [XmlAttribute("count")]
         public int Count { get; set; }
 
+        [XmlAttribute("maxIssueSeverity")]
+        public int MaxIssueSeverity { get; set; }
+
+        [XmlAttribute("critical")]
+        public int Criticals { get; set; }
+
+        [XmlAttribute("high")]
+        public int Highs { get; set; }
+
+        [XmlAttribute("medium")]
+        public int Mediums { get; set; }
+        
+        [XmlAttribute("low")]
+        public int Lows { get; set; }
+
+        [XmlAttribute("info")]
+        public int Infos { get; set; }
+
     }
 
 }

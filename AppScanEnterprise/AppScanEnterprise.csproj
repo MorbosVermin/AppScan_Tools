@@ -57,6 +57,8 @@
     <Compile Include="REST\Application.cs" />
     <Compile Include="REST\AppScanEntRestService.cs" />
     <Compile Include="REST\NameValuePairs.cs" />
+    <Compile Include="REST\ScanFinding.cs" />
+    <Compile Include="Utils\DateTimeUtils.cs" />
     <Compile Include="Utils\StringUtils.cs" />
   </ItemGroup>
   <ItemGroup>
